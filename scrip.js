@@ -8,5 +8,11 @@ const img = new Image(); // สร้างออบเจ็กต์ภาพ
 		ctx.drawImage(img, 400, 50, 400, 200); // วาดภาพบน canvas
 	};
 ctx.fillStyle = "rgb(45, 138, 8)";
-ctx.fillRect(50, 50, 50, 50);
+ctx.fillRect(0, 0, 50, 50);
+ctx.strokeStyle = "red";
+	// วาดเส้น
+	ctx.beginPath(); // กำหนดให้เริ่มวาดเส้น
+	ctx.arc(500,400, 150, 0, 7); // กำหนดลักษณะเส้นที่วาด arc คือเส้นโค้ง
+	ctx.closePath(); // คือทำให้มีการลงเส้นกลับมาที่จุดเริ่มต้น
+	ctx.stroke(); // วาดเส้นตามที่กำหนด
 });
