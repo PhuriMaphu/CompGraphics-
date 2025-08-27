@@ -92,4 +92,36 @@ ctx.beginPath(); // เริ่มเส้นทางใหม่
 	ctx.fill(); // เติมสีภายในเส้นทางที่กำหนด
 	ctx.stroke(); // วาดเส้นตามเส้นทางที่กำหนด
     ctx.restore(); 
+
+	function getRandomNumber(min, max) {     //วาดรูปแบบสุ่ม
+  return Math.random() * (max - min) + min;
+}
+
+// ฟังก์ชันสำหรับวาดวงกลมแบบสุ่ม
+function drawRandomCircle() {
+  // สุ่มพิกัด x และ y ให้อยู่ภายใน canvas
+  const x = getRandomNumber(0, canvas.width);
+  const y = getRandomNumber(0, canvas.height);
+
+  // สุ่มรัศมี (radius)
+  const radius = getRandomNumber(5, 50);
+
+  // สุ่มสี (สีแบบ RGB)
+  const r = getRandomNumber(0, 255);
+  const g = getRandomNumber(0, 255);
+  const b = getRandomNumber(0, 255);
+  const color = `rgb(${r}, ${g}, ${b})`;
+
+  // วาดวงกลม
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.closePath();
+}
+
+// เรียกฟังก์ชันเพื่อวาดวงกลม 100 วง
+for (let i = 0; i < 1000; i++) {
+  drawRandomCircle();
+}
 });
