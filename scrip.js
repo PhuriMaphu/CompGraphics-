@@ -93,10 +93,11 @@ ctx.beginPath(); // เริ่มเส้นทางใหม่
 	ctx.stroke(); // วาดเส้นตามเส้นทางที่กำหนด
     ctx.restore(); 
 
+
+	
 	function getRandomNumber(min, max) {     //วาดรูปแบบสุ่ม
   return Math.random() * (max - min) + min;
 }
-
 // ฟังก์ชันสำหรับวาดวงกลมแบบสุ่ม
 function drawRandomCircle() {
   // สุ่มพิกัด x และ y ให้อยู่ภายใน canvas
@@ -121,7 +122,7 @@ function drawRandomCircle() {
 }
 
 // เรียกฟังก์ชันเพื่อวาดวงกลม 100 วง
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 10; i++) {
   drawRandomCircle();
 }
 });

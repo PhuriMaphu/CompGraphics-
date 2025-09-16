@@ -3,42 +3,45 @@ console.log("Hello World!!");
 const canvas = document.querySelector("#myCanvas"); // ใช้ ID ของ canvas ที่ต้องการเข้าถึง
 const ctx = canvas.getContext("2d"); // ใช้ 2D context สำหรับวาดกราฟิก
 
-ctx.strokeStyle = "red";
-ctx.lineWidth = 5;
-ctx.fillStyle = "rgb(234, 249, 234)"; //สี่เหลี่ยม
-ctx.strokeRect(300, 200, 150, 150);
+ctx.fillStyle = "red";
+ctx.fillRect(0, 0, 10, 20);  // สี่เหลี่ยมสีแดง fillRect(x, y, width, height)
 
-ctx.beginPath(); // เริ่มเส้นทางใหม่
-	ctx.moveTo(100, 80); // จุดเริ่มต้นของเส้น
-	ctx.lineTo(500, 400); // จุดต่อไปของเส้น
-	ctx.lineTo(250, 450); // จุดสิ้นสุดของเส้น
-	ctx.lineTo(100, 80); // จุดสิ้นสุดของเส้น
-	ctx.lineCap = "round"; // กำหนดรูปแบบปลายเส้น
-	ctx.strokeStyle = "purple"; // กำหนดสีเส้น
-	ctx.lineWidth = 8; // กำหนดความหนาของเส้น
-	ctx.stroke(); // วาดเส้นตรง
+ctx.moveTo(0, 0);    //วาดเส้นตรง
+ctx.lineTo(1000, 500);
+ctx.lineWidth = 10; //ความหนาเส้น
+ctx.strokeStyle = "blue"; //สีเส้น
+ctx.lineCap = "round"; //รูปแบบปลายเส้น  ("butt", "round" or "square")
+ctx.stroke();
 
-ctx.beginPath(); // เริ่มเส้นทางใหม่
-	ctx.moveTo(1000, 400); // จุดเริ่มต้นของเส้น
-	ctx.lineTo(1000, 0); // จุดต่อไปของเส้น บน
-    
-	ctx.moveTo(1000, 400); // จุดเริ่มต้นของเส้น
-	ctx.lineTo(2000, 400); // จุดสิ้นสุดของเส้น ขวา
 
-	ctx.moveTo(1000, 400); // จุดเริ่มต้นของเส้น
-	ctx.lineTo(1000, 800); // จุดสิ้นสุดของเส้น ด้านล่าง
 
-	ctx.moveTo(1000, 400); // จุดเริ่มต้นของเส้น
-	ctx.lineTo(0, 400); // จุดสิ้นสุดของเส้น  ซ้าย
+ctx.beginPath();
+ctx.arc(95, 50, 40, 0, 2 * Math.PI);  // วาดวงกลม (x, y, radius, มุมเริ่ม, มุมจบ)
+ctx.fillStyle = "green";
+ctx.fill();     // เติมสีวงกลม
+ctx.stroke();
 
-	ctx.strokeStyle = "purple"; // กำหนดสีเส้น
-	ctx.lineWidth = 4; // กำหนดความหนาของเส้น
-	ctx.stroke(); // วาดเส้นตรง
+ctx.fillStyle = "rgba(45, 218, 10, 1)";
+ctx.strokeStyle = "black";
+ctx.moveTo(1000, 500);
+ctx.lineTo(0, 500);
+//ctx.lineTo(0, 1000);
+//ctx.lineTo(1000, 1000);
+ctx.moveTo(1000, 500);
+ctx.lineTo(1000, 1000);
+ctx.fill();
+ctx.stroke();
 
-ctx.strokeStyle = "red";
-	// วาดเส้น
-	ctx.beginPath(); // กำหนดให้เริ่มวาดเส้น
-	ctx.arc(1500,400, 50, 3, 10); // กำหนดลักษณะเส้นที่วาด arc คือเส้นโค้ง
-	//ctx.closePath(); // คือทำให้มีการลงเส้นกลับมาที่จุดเริ่มต้น
-	ctx.stroke(); // วาดเส้นตามที่กำหนด
+function grass() {
+for (let i = 0; i < 10; i++) {
+let x = 0;
+let y = 300;
+ctx.translate(x, y);
+ctx.moveTo(0, 0);    //วาดเส้นตรง
+ctx.lineTo(-150, 150);
+ctx.stroke();
+x+=1;
+ }
+}
+grass();
 });
