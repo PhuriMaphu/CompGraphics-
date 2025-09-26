@@ -1,0 +1,332 @@
+function dist2(data, k){ //kmean
+  var d1 = data[0];
+  var k1 = k[0];
+  var k2 = k[1];
+  var k3 = k[2];
+  var a1 = dist1(data, [k1]);
+  var a2 = dist1(data, [k2]);
+  var a3 = dist1(data, [k3]);
+  return [ [a1, a2, a3] ];
+}
+
+function dist1(data, k) {
+  var d1 = data[0];
+  var k1 = k[0];
+  var sum = 0
+  for(var i=0; i<d1.length; i++){
+    var tmp = (d1[i] - k1[i]);
+    sum += (tmp * tmp);
+  } 
+  return Math.sqrt(sum);
+}
+
+
+
+function ks3(k, data, code) {
+  var ret = [];
+  for(var i = 0; i < k.length; i++) {
+    if(k[i][0] == code) {
+      ret.push(data[i]);
+    }else{
+      ret.push([]);
+    }
+  }
+  return ret;
+}
+
+
+function minK(data) {
+  var d = data[0];
+  var mn = 9999;
+  var idx;
+  for(var i=0; i<d.length; i++){
+    if (d[i] < mn) {
+      mn = d[i];
+      idx = i;
+    }
+  }
+  return "k"+(idx+1);
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+function sim3 (data, target) { //smilar**********************************
+var ret = [];
+var d1 = data[0];
+for(var i=0; i<target.length; i++) {
+var t1 = target[i];
+var s = similar(d1, t1);
+ret.push(s);
+}
+return 1 - [ret];
+}
+
+function sim2(d,t) {
+return similar(d[0], t[0])
+}
+
+function sim0(d,t) {
+return 1-similar (d[0], t[0])
+}
+
+function similar(d,t) {
+var cnt =0;
+for(var i=0; i<d.length; i++) {
+//cnt += d[i]==t[i]?1:0;
+if(d[i]==t[i]) cnt++;
+}
+return cnt/d.length;
+}
+
+function smax(value, name, idx){ 
+  var v1 = value[0];
+  var n1 = name[0];
+  var mx = -9999;
+  for(var i=0; i<v1.length; i++){
+    if(n1[i]==idx){
+
+    } else {
+      if(v1[i]>mx) {
+        var ret = [];
+        mx = v1[i];
+        ret.push(n1[i]);
+       }else if (v1[i]==mx) {
+       ret.push(n1[i]);
+      }
+    }
+  }
+  return ret.join(',');
+}
+
+function smin(value, name, idx){
+  var v1 = value[0];
+  var n1 = name[0];
+  var mn = 9999; 
+  var ret = []; 
+
+  for(var i=0; i<v1.length; i++){
+    if(n1[i]==idx){
+    } else {
+      if(v1[i] < mn) { 
+        ret = []; 
+        mn = v1[i];
+        ret.push(n1[i]);
+      } else if (v1[i] == mn) {
+        ret.push(n1[i]); 
+      }
+    }
+  }
+  return ret.join(',');
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+function asso2(data, fields) {
+var ret = [];
+for(var i=0; i<data.length; i++) {
+var d1 = data[i];
+console.log("d1=%s %s", d1, typeof d1)
+var ax = asso1(String(d1), fields);
+ret.push(ax[0])
+}
+return ret;
+}
+
+function asso1(data, fields) {       //AssoRule
+var f1 = fields[0];
+var ret = [];
+for(var i=0; i<f1.length; i++) {
+if(data.search(f1[i])==-1)
+ret.push(0)
+else
+ret.push(1);
+}
+return [ret];
+}
+
+function td(data1,data2){
+  if(data1+data2 == 2) return 1;
+  else return 0;
+}
+
+function td2(data1,data2,data3){
+  if(data1+data2+data3 == 3) return 1;
+  else return 0;
+}
+
+function onq(num1,num2){
+var result =num1/num2;
+return result;
+}
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+function sim3(data, target){                                 //simular
+  var ret = [];
+  var d1 = data[0];
+  for(var i=0; i<target.length; i++){
+    var t1 = target[i];
+    var s = similar(d1, t1);
+    ret.push(s);
+  }
+  return [ret];
+}
+
+function sim30(data, target){
+  var ret = [];
+  var d1 = data[0]; 
+  for(var i=0; i<target.length; i++){
+    var t1 = target[i]; 
+    var s = 1 - similar(d1, t1); 
+    ret.push(s);
+  }
+  return [ret]; 
+}
+
+function sim2(d, t) {
+  return similar(d[0],t[0])
+}
+
+function sim0(d, t) {
+  return 1-similar(d[0],t[0])
+}
+
+function similar (d,t) {
+  var cnt = 0;
+  for(var i=0; i<d.length; i++){
+    if (d[i] == t[i]) cnt++;
+  }
+  return cnt/d.length;
+} 
+
+CREATE DATABACE
+
+
+
+utf8gennaralci MariaDB appphone
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+function conv (data , target) {     //convert1
+  var d1 = data[0];
+  var t1 = target[0];
+  var ret = [];
+  for(var i=0; i<t1.length; i++){
+    if(d1.indexOf ( t1[i])>=0) {
+      ret.push(1);
+    } else {
+      ret.push(0);
+    }
+  }
+  return [ret];
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE TABLE BRANCH (
+    branchNo VARCHAR(10) PRIMARY KEY,
+    street VARCHAR(100) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    postcode VARCHAR(10) NOT NULL
+);
+
+INSERT INTO BRANCH (branchNo, street, city, postcode)
+VALUES
+    ('B005', '21 ถ.ห้วยแก้ว', 'เชียงใหม่', '50300'),
+    ('B007', '50 ถ.เพหลโยธิน', 'พิษณุโลก', '65150'),
+    ('B003', '143 ถ.วิภาวดีรังสิต', 'กรุงเทพฯ', '10110'),
+    ('B004', '22 ถ.สถิรพร', 'เชียงราย', '57000'),
+    ('B002', '11 ถ.พหลโยธิน', 'เชียงใหม่', '50300');
+
+CREATE TABLE EMPLOYEE (
+    empNo VARCHAR(10) PRIMARY KEY,
+    empName VARCHAR(100) NOT NULL,
+    position VARCHAR(50) NOT NULL,
+    sex CHAR(1) CHECK (sex IN ('M', 'F')),
+    birthDate DATE,
+    salary DECIMAL(10,2),
+    branchNo VARCHAR(10),
+    FOREIGN KEY (branchNo) REFERENCES BRANCH(branchNo)
+);
+
+INSERT INTO EMPLOYEE (empNo, empName, position, sex, birthDate, salary, branchNo)
+VALUES
+    ('SL21', 'ชัยชัย สุขศรี', 'ผู้จัดการ', 'M', '2508-10-01', 30000, 'B005'),
+    ('S037', 'ศิริทัศ มณีจันทร์', 'ผู้ช่วย', 'F', '2515-09-10', 12000, 'B003'),
+    ('S014', 'สมศักดิ์ แซ่ตั้ง', 'ซูเปอร์ไวเซอร์', 'M', '2520-03-24', 18000, 'B003'),
+    ('SA09', 'ปิยะฉัตร เอี่ยมสุข', 'ผู้ช่วย', 'F', '2521-02-19', 9000, 'B007'),
+    ('SG05', 'พรรัตน์ ธนะศิลป์', 'ผู้จัดการ', 'F', '2511-06-03', 24000, 'B003'),
+    ('SL41', 'ลัดดา วงศ์ดี', 'ผู้ช่วย', 'F', '2524-06-13', 9000, 'B005');
+
+CREATE TABLE PRIVATE_OWNER (
+    ownerNo VARCHAR(10) PRIMARY KEY,
+    ownerName VARCHAR(100) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+    telNo VARCHAR(20)
+);
+
+INSERT INTO PRIVATE_OWNER (ownerNo, ownerName, address, telNo)
+VALUES
+    ('C046', 'นิรมล พัฒนา', 'พิษณุโลก', '061-4445568'),
+    ('C087', 'ธาดาชัย ขุนศรี', 'กรุงเทพฯ', '02-5369860'),
+    ('C040', 'กาญดา ใจมา', 'กรุงเทพฯ', '02-4868891'),
+    ('C093', 'สุชโล แซ่ตี้', 'กรุงเทพฯ', '02-5678811');
+
+CREATE TABLE PROPERTY_FOR_RENT (
+    propertyNo VARCHAR(10) PRIMARY KEY,
+    street VARCHAR(100) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    postcode VARCHAR(10) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    rooms INT CHECK (rooms > 0),
+    rent DECIMAL(10,2) NOT NULL,
+    ownerNo VARCHAR(10),
+    empNo VARCHAR(10),
+    branchNo VARCHAR(10),
+    FOREIGN KEY (ownerNo) REFERENCES PRIVATE_OWNER(ownerNo),
+    FOREIGN KEY (empNo) REFERENCES EMPLOYEE(empNo),
+    FOREIGN KEY (branchNo) REFERENCES BRANCH(branchNo)
+);
+
+INSERT INTO PROPERTY_FOR_RENT (propertyNo, street, city, postcode, type, rooms, rent, ownerNo, empNo, branchNo)
+VALUES
+    ('PA14', '19 ถ.พหลโยธิน', 'พิษณุโลก', '65000', 'บ้าน', 6, 650, 'C046', 'SA09', 'B007'),
+    ('PL94', '14 ถ.ลำห้วย', 'เชียงใหม่', '50310', 'อพาร์ตเมนต์', 4, 400, 'C087', 'SL41', 'B005'),
+    ('PG04', '6 ถ.วิภาวดีรังสิต', 'กรุงเทพฯ', '10200', 'อพาร์ตเมนต์', 3, 350, 'C040', NULL, 'B003'),
+    ('PG36', '2 ถ.ประชาอุทิศ', 'กรุงเทพฯ', '10160', 'อพาร์ตเมนต์', 3, 375, 'C093', 'SO37', 'B003'),
+    ('PG21', '18 ถ.พญาไท', 'กรุงเทพฯ', '10400', 'บ้าน', 5, 600, 'CO87', 'S037', 'B003'),
+    ('PG16', '5 ถ.พญาไท', 'กรุงเทพฯ', '10400', 'อพาร์ตเมนต์', 4, 450, 'CO93', 'S014', 'B003');
+
+CREATE TABLE CLIENT (
+    clientNo VARCHAR(10) PRIMARY KEY,
+    clientName VARCHAR(100) NOT NULL,
+    telNo VARCHAR(20),
+    prefType VARCHAR(50),
+    maxRent DECIMAL(10,2)
+);
+
+INSERT INTO CLIENT (clientNo, clientName, telNo, prefType, maxRent)
+VALUES
+('CR76', 'ยิ่งยุทธ ธนเลิศ', '02-5568991', 'อพาร์ทเมนต์', 425),
+('CR56', 'สิราณี พรมจรรย์', '02-4456328', 'อพาร์ทเมนต์', 350),
+('CR74', 'ศรีสมร ศิริพงษ์', '02-4509969', 'บ้าน', 750),
+('CR62', 'ตะวัน ส่งศรีสุข', '061-7655568', 'อพาร์ทเมนต์', 600);
+
+CREATE TABLE VIEWING (
+    clientNo VARCHAR(10),
+    propertyNo VARCHAR(10),
+    viewDate DATE,
+    comment TEXT,
+    PRIMARY KEY (clientNo, propertyNo, viewDate),
+    FOREIGN KEY (clientNo) REFERENCES CLIENT(clientNo),
+    FOREIGN KEY (propertyNo) REFERENCES PROPERTY_FOR_RENT(propertyNo)
+);
+
+INSERT INTO VIEWING (clientNo, propertyNo, viewDate, comment)
+VALUES
+('CR56', 'PA14', '2558-06-24', 'พื้นที่ขนาดเล็ก'),
+('CR76', 'PG04', '2558-04-20', 'ระยะทางไกลเกิน'),
+('CR56', 'PG04', '2558-05-28', NULL),
+('CR62', 'PA14', '2558-05-14', 'ไม่มีห้องครัว'),
+('CR56', 'PG36', '2558-04-28', NULL);
